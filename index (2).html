@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bazia Teedum Junior | Adidas US Sales Analysis</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+:root{--bg:#f6f7f9;--ink:#161a22;--mute:#5a6372;--line:#dde1e8;--bar:#c9d3ea;--hi:#1b4fd6;--panel:#ffffff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--ink:#eceff4;--mute:#a1a9b8;--line:#2b313c;--bar:#2c3550;--hi:#7da2ff;--panel:#1a1e27}}
+:root[data-theme="dark"]{--bg:#12151b;--ink:#eceff4;--mute:#a1a9b8;--line:#2b313c;--bar:#2c3550;--hi:#7da2ff;--panel:#1a1e27}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:48px 22px 72px}
+h1,h2{font-family:"IBM Plex Serif",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0}
+h1{font-size:clamp(30px,6vw,44px);max-width:20ch}
+h2{font-size:25px;margin-top:56px;margin-bottom:6px}
+p{margin:12px 0;max-width:68ch}
+.sub{color:var(--mute);margin-top:14px}
+.facts{display:flex;flex-wrap:wrap;gap:12px 36px;margin:30px 0 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts div{min-width:120px}
+.facts b{display:block;font:600 28px/1.2 "IBM Plex Serif",Georgia,serif}
+.facts span{color:var(--mute);font-size:14px}
+.chart{margin:18px 0 6px}
+.row{display:grid;grid-template-columns:150px 1fr 118px;gap:12px;align-items:center;padding:5px 0;font-size:15px}
+.track{height:20px;background:transparent}
+.fill{height:100%;background:var(--bar);border-radius:2px}
+.row.top .fill{background:var(--hi)}
+.val{text-align:right;color:var(--mute);font-variant-numeric:tabular-nums;font-size:14px}
+.note{color:var(--mute);font-size:14px}
+.yoy{display:grid;gap:10px;margin:18px 0}
+.yoy .row{grid-template-columns:60px 1fr 90px}
+.yoy .track{height:34px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:15px;margin-top:12px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--mute);font-weight:500}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+ul{padding-left:20px;max-width:68ch}li{margin:8px 0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:4px 20px 14px;margin-top:16px}
+a{color:var(--hi)}
+@media (max-width:560px){.row{grid-template-columns:104px 1fr 84px;font-size:14px}.val{font-size:13px}}
+</style>
+</head>
+<body>
+<main>
+<h1>What drove $900M in Adidas US sales, and where the profit sits</h1>
+<p class="sub">Capstone group project (Group 6) by Bazia Teedum Junior. Data analysis with Microsoft Excel: PivotTables, PivotCharts, slicers and a dashboard.</p>
+
+<div class="facts">
+<div><b>$899.9M</b><span>total sales</span></div>
+<div><b>$332.1M</b><span>operating profit (36.9% margin)</span></div>
+<div><b>2.48M</b><span>units sold</span></div>
+<div><b>9,648</b><span>sales records, 2020 to 2021</span></div>
+</div>
+
+<h2>The question</h2>
+<p>Which products, retailers, regions and sales methods bring in the most revenue, and which ones earn the best profit? The goal was to give a sales team clear places to focus.</p>
+
+<h2>Sales more than tripled from 2020 to 2021</h2>
+<p>Sales rose from $182.1M in 2020 to $717.8M in 2021, and units sold grew from 462,000 to 2.02M.</p>
+<div class="yoy" id="yoy"></div>
+
+<h2>Top retailers</h2>
+<p>West Gear and Foot Locker together account for about half of all sales. Sports Direct sells less but keeps the most profit per dollar, at a 40.7% margin.</p>
+<div class="chart" id="ret"></div>
+
+<h2>Regions: the West sells most, the South earns most per dollar</h2>
+<p>The West brings in 30% of sales but has the lowest margin (33.2%). The South is smaller but has the highest margin (42.3%).</p>
+<div class="chart" id="reg"></div>
+
+<h2>Products</h2>
+<p>Men's Street Footwear is the top category at 23% of sales. Men's Athletic Footwear has the lowest margin (33.7%).</p>
+<div class="chart" id="prod"></div>
+
+<h2>Sales methods</h2>
+<p>In-store leads on volume, but online earns the best margin.</p>
+<div class="wrap"><table>
+<tr><th>Method</th><th class="n">Sales ($M)</th><th class="n">Share of sales</th><th class="n">Operating margin</th></tr>
+<tr><td>In-store</td><td class="n">356.6</td><td class="n">39.6%</td><td class="n">35.8%</td></tr>
+<tr><td>Outlet</td><td class="n">295.6</td><td class="n">32.8%</td><td class="n">36.5%</td></tr>
+<tr><td>Online</td><td class="n">247.7</td><td class="n">27.5%</td><td class="n">39.0%</td></tr>
+</table></div>
+
+<h2>What the data suggests</h2>
+<div class="panel">
+<ul>
+<li>Look at growing the South: it has the best margin (42.3%) and the second-smallest sales base.</li>
+<li>Look at expanding online: it has a 39% margin but only 27.5% of sales.</li>
+<li>Review pricing or costs for Men's Athletic Footwear, which has the lowest margin of any category.</li>
+<li>Work more closely with Sports Direct, the most profitable retailer per dollar sold.</li>
+</ul>
+</div>
+
+<h2>How I did it</h2>
+<ul>
+<li>Started from a raw sales table of 9,648 rows (retailer, region, state, city, product, price, units, sales, profit, margin, sales method, invoice date).</li>
+<li>Built PivotTables for products, regions, retailers, sales method, monthly trend, year-on-year growth and top product line per region.</li>
+<li>Turned them into PivotCharts with slicers on one dashboard sheet, with headline totals for sales, profit and units.</li>
+</ul>
+
+<h2>Contact</h2>
+<p>Bazia Teedum Junior | baziateedum@gmail.com | 08166950546 | Port Harcourt, Nigeria</p>
+<p class="note">In the charts, the right-hand figures show sales, then operating margin. Figures come from the project's Excel workbook. Margin = operating profit divided by total sales.</p>
+</main>
+<script>
+function bars(id,rows,hi){hi=hi||0;var max=null;
+  var el=document.getElementById(id),mx=max||Math.max.apply(null,rows.map(function(r){return r[1]}));
+  rows.forEach(function(r,i){
+    var d=document.createElement('div');d.className='row'+(i===hi?' top':'');
+    d.innerHTML='<span></span><div class="track"><div class="fill"></div></div><span class="val"></span>';
+    d.children[0].textContent=r[0];
+    d.children[1].firstChild.style.width=(r[1]/mx*100)+'%';
+    d.children[2].textContent=r[2];
+    el.appendChild(d);
+  });
+}
+bars('yoy',[['2020',182.1,'$182.1M'],['2021',717.8,'$717.8M']],1);
+bars('ret',[['West Gear',243.0,'$243.0M | 35.3%'],['Foot Locker',220.1,'$220.1M | 36.7%'],['Sports Direct',182.5,'$182.5M | 40.7%'],["Kohl's",102.1,'$102.1M | 36.0%'],['Amazon',77.7,'$77.7M | 37.1%'],['Walmart',74.6,'$74.6M | 34.6%']]);
+bars('reg',[['West',269.9,'$269.9M | 33.2%'],['Northeast',186.3,'$186.3M | 36.5%'],['Southeast',163.2,'$163.2M | 37.1%'],['South',144.7,'$144.7M | 42.3%'],['Midwest',135.8,'$135.8M | 38.9%']]);
+bars('prod',[["Men's Street Footwear",208.8,'$208.8M | 39.7%'],["Women's Apparel",179.0,'$179.0M | 38.3%'],["Men's Athletic Footwear",153.7,'$153.7M | 33.7%'],["Women's Street Footwear",128.0,'$128.0M | 35.2%'],["Men's Apparel",123.7,'$123.7M | 36.2%'],["Women's Athletic Footwear",106.6,'$106.6M | 36.6%']]);
+</script>
+</body>
+</html>
